@@ -1,4 +1,0 @@
-interface:
-  display_name: "Awesome Requirements Writer"
-  short_description: "Draft rigorous automotive product requirements"
-  default_prompt: "Use $awesome-requirements-writer to turn my engineering notes into testable automotive product requirements."

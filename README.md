@@ -35,14 +35,14 @@ This repository packages one `SKILL.md` file plus English and Chinese requiremen
 
 ## Install
 
-Clone this repository into your Codex skills directory:
+For Codex user-level use, clone this repository into the shared Agent Skills directory:
 
 ```bash
-mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
-git clone https://github.com/muchengracedriver/awesome-requirements-writer.git "${CODEX_HOME:-$HOME/.codex}/skills/awesome-requirements-writer"
+mkdir -p "$HOME/.agents/skills"
+git clone https://github.com/muchengracedriver/awesome-requirements-writer.git "$HOME/.agents/skills/awesome-requirements-writer"
 ```
 
-For other Agent Skills-compatible tools, copy the repository folder to the tool's local skills directory.
+For project-level installation, copy the relevant adapter from `adapters/` into the target project.
 
 ## Use
 
@@ -59,14 +59,37 @@ The skill follows the user's language. Chinese input produces Chinese requiremen
 
 ```text
 SKILL.md
-agents/openai.yaml
 references/
   automotive-context.md
   requirement-patterns-en.md
   requirement-patterns-zh.md
+adapters/
+  codex/
+  claude/
+  cursor/
+  gemini/
+  opencode/
+  codebuddy/
+  github-copilot/
+  trae/
 ```
 
 `SKILL.md` is the core agent instruction. The files in `references/` are loaded only when the task needs detailed templates or automotive engineering context.
+
+## Adapters
+
+| Target | Adapter source | Install target |
+| --- | --- | --- |
+| Codex | `adapters/codex/.agents/skills/awesome-requirements-writer/` | `.agents/skills/awesome-requirements-writer/` or `~/.agents/skills/awesome-requirements-writer/` |
+| Claude Code | `adapters/claude/.claude/skills/awesome-requirements-writer/` | `.claude/skills/awesome-requirements-writer/` or `~/.claude/skills/awesome-requirements-writer/` |
+| Cursor | `adapters/cursor/.cursor/rules/` | `.cursor/rules/`, including `references/` |
+| Gemini CLI | `adapters/gemini/` | Project root, including `GEMINI.md` and `references/`; merge with existing `GEMINI.md` instead of overwriting |
+| OpenCode | `adapters/opencode/` | Merge `AGENTS.snippet.md` into project-root `AGENTS.md`; copy `opencode.json` and `references/` |
+| CodeBuddy | `adapters/codebuddy/.codebuddy/rules/awesome-requirements-writer/` | `.codebuddy/rules/awesome-requirements-writer/`, including `RULE.mdc` and `references/` |
+| GitHub Copilot | `adapters/github-copilot/.github/` | `.github/`, including `copilot-instructions.md`, `instructions/`, and `instructions/references/` |
+| Trae | `adapters/trae/.trae/` | Trae project rules path, confirm whether your version uses `.trae/project_rules.md` or `.trae/rules/project_rules.md` |
+
+Rule-style adapters include bundled `references/`, but their entry files explicitly tell the agent not to load every reference by default. The agent should read only the matching language or automotive-context reference when the task needs it. For fixed entry filenames such as `AGENTS.md` or `GEMINI.md`, merge the provided snippet into the user's existing file instead of overwriting it.
 
 ## How to Know It's Working
 

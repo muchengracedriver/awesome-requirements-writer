@@ -4,7 +4,7 @@
 
 对于这个skill中提到的一些内容，我曾经写过一篇文章，具体请浏览：https://zhuanlan.zhihu.com/p/338598640
 
-[English](./README-en.md) | 简体中文
+[English](./README.md) | 简体中文
 
 ## 聚焦的问题
 
@@ -38,14 +38,14 @@
 
 ## 安装
 
-把仓库 clone 到 Codex skills 目录：
+如果用于 Codex 的用户级安装，把仓库 clone 到通用 Agent Skills 目录：
 
 ```bash
-mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
-git clone https://github.com/muchengracedriver/awesome-requirements-writer.git "${CODEX_HOME:-$HOME/.codex}/skills/awesome-requirements-writer"
+mkdir -p "$HOME/.agents/skills"
+git clone https://github.com/muchengracedriver/awesome-requirements-writer.git "$HOME/.agents/skills/awesome-requirements-writer"
 ```
 
-如果使用其他兼容 Agent Skills 的工具，把整个仓库文件夹复制到对应工具的本地 skills 目录。
+如果用于某个项目级安装，把 `adapters/` 下对应平台的 adapter 复制到目标项目。
 
 ## 使用
 
@@ -62,14 +62,37 @@ Use $awesome-requirements-writer to turn these engineering notes into product re
 
 ```text
 SKILL.md
-agents/openai.yaml
 references/
   automotive-context.md
   requirement-patterns-en.md
   requirement-patterns-zh.md
+adapters/
+  codex/
+  claude/
+  cursor/
+  gemini/
+  opencode/
+  codebuddy/
+  github-copilot/
+  trae/
 ```
 
 `SKILL.md` 是核心 agent 指令。`references/` 里的文件只在任务需要详细模板或汽车工程上下文时读取。
+
+## 平台适配
+
+| 目标平台 | Adapter 来源 | 安装目标 |
+| --- | --- | --- |
+| Codex | `adapters/codex/.agents/skills/awesome-requirements-writer/` | `.agents/skills/awesome-requirements-writer/` 或 `~/.agents/skills/awesome-requirements-writer/` |
+| Claude Code | `adapters/claude/.claude/skills/awesome-requirements-writer/` | `.claude/skills/awesome-requirements-writer/` 或 `~/.claude/skills/awesome-requirements-writer/` |
+| Cursor | `adapters/cursor/.cursor/rules/` | `.cursor/rules/`，包含 `references/` |
+| Gemini CLI | `adapters/gemini/` | 项目根目录，包含 `GEMINI.md` 和 `references/`；如果已有 `GEMINI.md`，应合并而不是覆盖 |
+| OpenCode | `adapters/opencode/` | 将 `AGENTS.snippet.md` 合并到项目根目录 `AGENTS.md`；复制 `opencode.json` 和 `references/` |
+| CodeBuddy | `adapters/codebuddy/.codebuddy/rules/awesome-requirements-writer/` | `.codebuddy/rules/awesome-requirements-writer/`，包含 `RULE.mdc` 和 `references/` |
+| GitHub Copilot | `adapters/github-copilot/.github/` | `.github/`，包含 `copilot-instructions.md`、`instructions/` 和 `instructions/references/` |
+| Trae | `adapters/trae/.trae/` | Trae 项目规则路径，需确认当前版本使用 `.trae/project_rules.md` 还是 `.trae/rules/project_rules.md` |
+
+规则型 adapter 现在也包含 `references/`，但入口文件会明确要求 agent 不要默认加载全部 reference，只在任务需要时读取对应语言模板或汽车工程上下文。对于 `AGENTS.md` 或 `GEMINI.md` 这类固定入口文件，应把提供的 snippet 合并进用户已有文件，而不是覆盖。
 
 ## 如何判断它在起作用
 
