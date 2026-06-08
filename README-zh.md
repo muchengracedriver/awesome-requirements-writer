@@ -36,56 +36,47 @@
 | **可追溯** | 需求缺少来源、测试、设计或验收链接 |
 
 
+
 ## 安装
 
-从 npm 安装这个包。npm 的 `postinstall` 步骤会自动把 skill 安装到通用 Agent Skills 目录：
+**方法一（推荐）：**
+直接告诉你的agent：安装awesome-requirements-writer。
+
+**方法二：**
+
+前置条件：先安装 Node.js 18 或更新版本。
+
+Linux/macOS 可用 nvm 安装 Node.js LTS：
 
 ```bash
-npm install awesome-requirements-writer
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash && . "$HOME/.nvm/nvm.sh" && nvm install --lts
 ```
 
-这会把 skill 安装到：
-
-```text
-~/.agents/skills/awesome-requirements-writer
-```
-
-这个包也提供可选安装器 CLI，用于安装特定工具的 adapter。如果只想安装到 Codex 专用目录：
+检查当前环境：
 
 ```bash
-npx awr install codex
+node --version
 ```
 
-这会把 skill 安装到：
 
-```text
-~/.codex/skills/awesome-requirements-writer
-```
-
-其他工具通常按项目安装，请在目标项目目录运行：
+确认node.js已安装后，运行：
 
 ```bash
-cd /path/to/your/project
-npx awr install cursor
-npx awr install gemini
-npx awr install opencode
-npx awr install github-copilot
+npx awesome-requirements-writer install
 ```
-
-也可以全局安装 CLI：
+备注：
+这个包也提供可选安装器 CLI，用于安装特定工具的 adapter。例如，若只想安装到 Codex 专用目录：
 
 ```bash
-npm install -g awesome-requirements-writer
-awr install codex
-awr install cursor --cwd /path/to/your/project
+npx awesome-requirements-writer install codex
 ```
 
 查看支持的目标：
 
 ```bash
-awr list
+npx awesome-requirements-writer list
 ```
-
+ß
 ## 使用
 
 显式调用 skill：
@@ -136,7 +127,7 @@ adapters/
 
 规则型 adapter 现在也包含 `references/`，但入口文件会明确要求 agent 不要默认加载全部 reference，只在任务需要时读取对应语言模板或汽车工程上下文。对于 `AGENTS.md` 或 `GEMINI.md` 这类固定入口文件，应把提供的 snippet 合并进用户已有文件，而不是覆盖。
 
-npm 安装器会自动用带标记的文本块完成合并。重复运行安装器会更新同一个标记块，不会反复追加重复内容。
+CLI 安装器会自动用带标记的文本块完成合并。重复运行安装器会更新同一个标记块，不会反复追加重复内容。
 
 ## 如何判断它在起作用
 

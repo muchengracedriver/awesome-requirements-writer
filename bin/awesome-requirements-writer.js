@@ -29,10 +29,8 @@ function usage() {
   console.log(`Awesome Requirements Writer installer
 
 Usage:
-  npm install awesome-requirements-writer
-  awr install [target] [options]
-  npx awr install [target] [options]
-  awr list
+  npx awesome-requirements-writer install [target] [options]
+  npx awesome-requirements-writer list
 
 Targets:
   agent|global       Install to the shared Agent Skills directory. This is the default.
@@ -55,11 +53,11 @@ Options:
   --help, -h         Show this help.
 
 Examples:
-  npm install awesome-requirements-writer
-  npx awr install codex
-  npx awr install claude
-  npx awr install cursor --cwd ./my-project
-  npx awr install opencode --cwd ./my-project
+  npx awesome-requirements-writer install
+  npx awesome-requirements-writer install codex
+  npx awesome-requirements-writer install claude
+  npx awesome-requirements-writer install cursor --cwd ./my-project
+  npx awesome-requirements-writer install opencode --cwd ./my-project
 `);
 }
 
@@ -290,7 +288,7 @@ function rejectGlobal(target, options) {
 
 function install(target, options) {
   const normalized = normalizeTarget(target || 'agent');
-  if (!normalized) fail(`Unknown target: ${target}. Run "awr list".`);
+  if (!normalized) fail(`Unknown target: ${target}. Run "npx awesome-requirements-writer list".`);
 
   if (!options.global && !options.project && ['agent', 'codex', 'claude'].includes(normalized)) {
     options.global = true;

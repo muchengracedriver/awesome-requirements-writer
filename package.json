@@ -1,0 +1,44 @@
+{
+  "name": "awesome-requirements-writer",
+  "version": "0.1.0",
+  "description": "Install an AI agent skill for writing clear, testable technical product requirements across Codex, Claude, Cursor, Gemini CLI, OpenCode, CodeBuddy, GitHub Copilot, and Trae.",
+  "license": "MIT",
+  "homepage": "https://github.com/muchengracedriver/awesome-requirements-writer#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muchengracedriver/awesome-requirements-writer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/muchengracedriver/awesome-requirements-writer/issues"
+  },
+  "bin": {
+    "awesome-requirements-writer": "bin/awesome-requirements-writer.js",
+    "awr": "bin/awesome-requirements-writer.js"
+  },
+  "files": [
+    "SKILL.md",
+    "references/",
+    "adapters/",
+    "bin/",
+    "README.md",
+    "README-zh.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "agent-skill",
+    "codex",
+    "claude",
+    "cursor",
+    "gemini-cli",
+    "opencode",
+    "requirements",
+    "technical-requirements"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node bin/awesome-requirements-writer.js list && node bin/awesome-requirements-writer.js install --project --cwd /tmp/awr-install-test --dry-run && node bin/awesome-requirements-writer.js install codex --project --cwd /tmp/awr-install-test --dry-run",
+    "pack:check": "npm --cache /tmp/awesome-requirements-writer-npm-cache pack --dry-run"
+  }
+}

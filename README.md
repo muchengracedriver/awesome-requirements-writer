@@ -35,52 +35,42 @@ This repository packages one `SKILL.md` file plus English and Chinese requiremen
 
 ## Install
 
-Install the package from npm. The npm `postinstall` step automatically installs the skill to the shared Agent Skills directory:
+**Method 1 (Recommended):**
+Tell your agent directly: install `awesome-requirements-writer` skill.
+
+**Method 2:**
+
+Prerequisite: install Node.js 18 or newer.
+
+Install Node.js LTS on Linux/macOS with nvm:
 
 ```bash
-npm install awesome-requirements-writer
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash && . "$HOME/.nvm/nvm.sh" && nvm install --lts
 ```
 
-That installs the skill to:
-
-```text
-~/.agents/skills/awesome-requirements-writer
-```
-
-The package also includes an optional installer CLI for target-specific adapters. For Codex-only installation:
+Check your environment:
 
 ```bash
-npx awr install codex
+node --version
 ```
 
-That installs the skill to:
-
-```text
-~/.codex/skills/awesome-requirements-writer
-```
-
-For other tools, run the installer from the target project:
+After confirming Node.js is installed, run:
 
 ```bash
-cd /path/to/your/project
-npx awr install cursor
-npx awr install gemini
-npx awr install opencode
-npx awr install github-copilot
+npx awesome-requirements-writer install
 ```
 
-You can also install the CLI globally:
+Note:
+This package also provides an optional installer CLI for target-specific adapters. For example, if you only want to install to the Codex-specific directory:
 
 ```bash
-npm install -g awesome-requirements-writer
-awr install codex
-awr install cursor --cwd /path/to/your/project
+npx awesome-requirements-writer install codex
 ```
 
 List supported targets:
 
 ```bash
-awr list
+npx awesome-requirements-writer list
 ```
 
 ## Use
@@ -133,7 +123,7 @@ adapters/
 
 Rule-style adapters include bundled `references/`, but their entry files explicitly tell the agent not to load every reference by default. The agent should read only the matching language or automotive-context reference when the task needs it. For fixed entry filenames such as `AGENTS.md` or `GEMINI.md`, merge the provided snippet into the user's existing file instead of overwriting it.
 
-The npm installer performs this merge automatically by using a marked block. Re-running the installer updates that block instead of appending duplicates.
+The CLI installer performs this merge automatically by using a marked block. Re-running the installer updates that block instead of appending duplicates.
 
 ## How to Know It's Working
 
