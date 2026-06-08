@@ -1,6 +1,6 @@
 ---
 name: awesome-requirements-writer
-description: Use when drafting, rewriting, reviewing, or decomposing technical product requirements for product systems, micro-processors, sensors, actuators, or functions, diagnostics, interfaces, or specifications, engineering change requests. Helps turn engineering know-how, notes, standards, customer nots and test expectations from conversational casual writing into clear, atomic, measurable, traceable，unambiguous requirements with acceptance criteria.
+description: Use when drafting, rewriting, reviewing, or decomposing technical product requirements for product systems, micro-processors, sensors, actuators, or functions, diagnostics, interfaces, or specifications, engineering change requests. Helps turn engineering know-how, notes, standards, customer notes and test expectations from conversational casual writing into clear, atomic, measurable, traceable，unambiguous requirements with acceptance criteria.
 ---
 
 # Awesome Requirements Writer
@@ -18,7 +18,7 @@ A strong requirement is:
 - **Unambiguous:** avoid subjective terms, vague modifiers, and implicit Boolean logic; use explicit `AND` / `OR` for compound conditions.
 - **Atomic:** assign one requirement ID to one indivisible obligation, condition, or behavior.
 - **Positively defined:** describe when the system shall perform the required behavior; avoid defining behavior by negating the opposite condition.
-- **No magic numbers:** all static numbers shall be expressed by a static variable name with a table of all stactic variables with its real engineering value.
+- **No magic numbers:** all static numbers shall be expressed by a static variable name with a table of all static variables with its real engineering value.
 - **Directly testable:** make required inputs controllable and required outputs observable by the intended verification method.
 - **Separate from information:** keep rationale, examples, diagrams, repeated context, and verification notes outside the normative requirement text.
 - **Traceable:** link upward to source, system, safety, customer, regulatory, or design-constraint needs, and sideways or downward to test and design evidence.
@@ -32,7 +32,7 @@ A strong requirement is:
 4. Classify requirements by type: functional (direct related to a specific feature or design), non-functional (performance, efficiency, expansion etc).
 5. Draft atomic "shall" statements with a single subject, condition, behavior, measurable target, operating bounds, and verification path.
 6. Add metadata: type(information/requirement), ID , content body and acceptance criteria.
-7. List all functinal requirements and related information in one chapter, while all non-functional requirements in another.
+7. List all functional requirements and related information in one chapter, while all non-functional requirements in another.
 8. In a new chapter make a table of all static variables and its value. If no value is given, type TBD.
 9. Audit the result for ambiguity, hidden design decisions, unverifiable claims, duplicate requirements, conflicting limits, missing fault behavior, and missing open questions.
 
@@ -55,7 +55,7 @@ for requirement:
 - Generate output as a .md file.
 
 ## Project-Specific Guidelines
-User can add their customized project-spicific guidelines in this section.
+User can add their customized project-specific guidelines in this section.
 
 
 ## References

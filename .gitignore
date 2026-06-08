@@ -1,3 +1,5 @@
 .DS_Store
 andy.md
-
+node_modules/
+*.tgz
+package.json

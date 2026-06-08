@@ -38,6 +38,6 @@ Use stable IDs such as `SYS-001`, `SWE-001`, and `HW-001`. Do not renumber exist
 
 Do not load all references by default. Read only the file that matches the current task:
 
-- Read `references/requirement-patterns-zh.md` when drafting or rewriting Chinese requirements.
-- Read `references/requirement-patterns-en.md` when drafting or rewriting English requirements.
-- Read `references/automotive-context.md` when the work involves automotive safety, diagnostics, cybersecurity, interfaces, operating states, suppliers, or verification context.
+- Read `.opencode/awesome-requirements-writer/references/requirement-patterns-zh.md` when drafting or rewriting Chinese requirements.
+- Read `.opencode/awesome-requirements-writer/references/requirement-patterns-en.md` when drafting or rewriting English requirements.
+- Read `.opencode/awesome-requirements-writer/references/automotive-context.md` when the work involves automotive safety, diagnostics, cybersecurity, interfaces, operating states, suppliers, or verification context.

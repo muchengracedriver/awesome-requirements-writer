@@ -35,14 +35,53 @@ This repository packages one `SKILL.md` file plus English and Chinese requiremen
 
 ## Install
 
-For Codex user-level use, clone this repository into the shared Agent Skills directory:
+Install the package from npm. The npm `postinstall` step automatically installs the skill to the shared Agent Skills directory:
 
 ```bash
-mkdir -p "$HOME/.agents/skills"
-git clone https://github.com/muchengracedriver/awesome-requirements-writer.git "$HOME/.agents/skills/awesome-requirements-writer"
+npm install awesome-requirements-writer
 ```
 
-For project-level installation, copy the relevant adapter from `adapters/` into the target project.
+That installs the skill to:
+
+```text
+~/.agents/skills/awesome-requirements-writer
+```
+
+The package also includes an optional installer CLI for target-specific adapters. For Codex-only installation:
+
+```bash
+npx awr install codex
+```
+
+That installs the skill to:
+
+```text
+~/.codex/skills/awesome-requirements-writer
+```
+
+For other tools, run the installer from the target project:
+
+```bash
+cd /path/to/your/project
+npx awr install cursor
+npx awr install gemini
+npx awr install opencode
+npx awr install github-copilot
+```
+
+You can also install the CLI globally:
+
+```bash
+npm install -g awesome-requirements-writer
+awr install codex
+awr install cursor --cwd /path/to/your/project
+```
+
+List supported targets:
+
+```bash
+awr list
+```
 
 ## Use
 
@@ -58,6 +97,8 @@ The skill follows the user's language. Chinese input produces Chinese requiremen
 ## Repository Layout
 
 ```text
+package.json
+bin/awesome-requirements-writer.js
 SKILL.md
 references/
   automotive-context.md
@@ -80,16 +121,19 @@ adapters/
 
 | Target | Adapter source | Install target |
 | --- | --- | --- |
-| Codex | `adapters/codex/.agents/skills/awesome-requirements-writer/` | `.agents/skills/awesome-requirements-writer/` or `~/.agents/skills/awesome-requirements-writer/` |
+| Shared Agent Skills | `adapters/codex/.agents/skills/awesome-requirements-writer/` | `~/.agents/skills/awesome-requirements-writer/` or project `.agents/skills/awesome-requirements-writer/` |
+| Codex-only | `adapters/codex/.agents/skills/awesome-requirements-writer/` | `~/.codex/skills/awesome-requirements-writer/` or project `.codex/skills/awesome-requirements-writer/` |
 | Claude Code | `adapters/claude/.claude/skills/awesome-requirements-writer/` | `.claude/skills/awesome-requirements-writer/` or `~/.claude/skills/awesome-requirements-writer/` |
 | Cursor | `adapters/cursor/.cursor/rules/` | `.cursor/rules/`, including `references/` |
-| Gemini CLI | `adapters/gemini/` | Project root, including `GEMINI.md` and `references/`; merge with existing `GEMINI.md` instead of overwriting |
-| OpenCode | `adapters/opencode/` | Merge `AGENTS.snippet.md` into project-root `AGENTS.md`; copy `opencode.json` and `references/` |
+| Gemini CLI | `adapters/gemini/` | Merge into `GEMINI.md`; copy references under `.gemini/awesome-requirements-writer/` |
+| OpenCode | `adapters/opencode/` | Merge `AGENTS.snippet.md` into `AGENTS.md`; copy references under `.opencode/awesome-requirements-writer/` |
 | CodeBuddy | `adapters/codebuddy/.codebuddy/rules/awesome-requirements-writer/` | `.codebuddy/rules/awesome-requirements-writer/`, including `RULE.mdc` and `references/` |
 | GitHub Copilot | `adapters/github-copilot/.github/` | `.github/`, including `copilot-instructions.md`, `instructions/`, and `instructions/references/` |
 | Trae | `adapters/trae/.trae/` | Trae project rules path, confirm whether your version uses `.trae/project_rules.md` or `.trae/rules/project_rules.md` |
 
 Rule-style adapters include bundled `references/`, but their entry files explicitly tell the agent not to load every reference by default. The agent should read only the matching language or automotive-context reference when the task needs it. For fixed entry filenames such as `AGENTS.md` or `GEMINI.md`, merge the provided snippet into the user's existing file instead of overwriting it.
+
+The npm installer performs this merge automatically by using a marked block. Re-running the installer updates that block instead of appending duplicates.
 
 ## How to Know It's Working
 

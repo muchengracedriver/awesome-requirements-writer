@@ -21,7 +21,7 @@
 
 ## 解决方案
 
-这个仓库把一个 `SKILL.md` 文件和中英文需求写作模板打包成可给 AI agent 调用的 skill，以解决工程师经验不做的问题。
+这个仓库把一个 `SKILL.md` 文件和中英文需求写作模板打包成可给 AI agent 调用的 skill，以解决工程师经验不足的问题。
 
 
 | 原则 | 防止的问题 |
@@ -38,14 +38,53 @@
 
 ## 安装
 
-如果用于 Codex 的用户级安装，把仓库 clone 到通用 Agent Skills 目录：
+从 npm 安装这个包。npm 的 `postinstall` 步骤会自动把 skill 安装到通用 Agent Skills 目录：
 
 ```bash
-mkdir -p "$HOME/.agents/skills"
-git clone https://github.com/muchengracedriver/awesome-requirements-writer.git "$HOME/.agents/skills/awesome-requirements-writer"
+npm install awesome-requirements-writer
 ```
 
-如果用于某个项目级安装，把 `adapters/` 下对应平台的 adapter 复制到目标项目。
+这会把 skill 安装到：
+
+```text
+~/.agents/skills/awesome-requirements-writer
+```
+
+这个包也提供可选安装器 CLI，用于安装特定工具的 adapter。如果只想安装到 Codex 专用目录：
+
+```bash
+npx awr install codex
+```
+
+这会把 skill 安装到：
+
+```text
+~/.codex/skills/awesome-requirements-writer
+```
+
+其他工具通常按项目安装，请在目标项目目录运行：
+
+```bash
+cd /path/to/your/project
+npx awr install cursor
+npx awr install gemini
+npx awr install opencode
+npx awr install github-copilot
+```
+
+也可以全局安装 CLI：
+
+```bash
+npm install -g awesome-requirements-writer
+awr install codex
+awr install cursor --cwd /path/to/your/project
+```
+
+查看支持的目标：
+
+```bash
+awr list
+```
 
 ## 使用
 
@@ -61,6 +100,8 @@ Use $awesome-requirements-writer to turn these engineering notes into product re
 ## 仓库结构
 
 ```text
+package.json
+bin/awesome-requirements-writer.js
 SKILL.md
 references/
   automotive-context.md
@@ -83,16 +124,19 @@ adapters/
 
 | 目标平台 | Adapter 来源 | 安装目标 |
 | --- | --- | --- |
-| Codex | `adapters/codex/.agents/skills/awesome-requirements-writer/` | `.agents/skills/awesome-requirements-writer/` 或 `~/.agents/skills/awesome-requirements-writer/` |
+| 通用 Agent Skills | `adapters/codex/.agents/skills/awesome-requirements-writer/` | `~/.agents/skills/awesome-requirements-writer/` 或项目 `.agents/skills/awesome-requirements-writer/` |
+| 仅 Codex | `adapters/codex/.agents/skills/awesome-requirements-writer/` | `~/.codex/skills/awesome-requirements-writer/` 或项目 `.codex/skills/awesome-requirements-writer/` |
 | Claude Code | `adapters/claude/.claude/skills/awesome-requirements-writer/` | `.claude/skills/awesome-requirements-writer/` 或 `~/.claude/skills/awesome-requirements-writer/` |
 | Cursor | `adapters/cursor/.cursor/rules/` | `.cursor/rules/`，包含 `references/` |
-| Gemini CLI | `adapters/gemini/` | 项目根目录，包含 `GEMINI.md` 和 `references/`；如果已有 `GEMINI.md`，应合并而不是覆盖 |
-| OpenCode | `adapters/opencode/` | 将 `AGENTS.snippet.md` 合并到项目根目录 `AGENTS.md`；复制 `opencode.json` 和 `references/` |
+| Gemini CLI | `adapters/gemini/` | 合并到 `GEMINI.md`；把 references 复制到 `.gemini/awesome-requirements-writer/` |
+| OpenCode | `adapters/opencode/` | 将 `AGENTS.snippet.md` 合并到 `AGENTS.md`；把 references 复制到 `.opencode/awesome-requirements-writer/` |
 | CodeBuddy | `adapters/codebuddy/.codebuddy/rules/awesome-requirements-writer/` | `.codebuddy/rules/awesome-requirements-writer/`，包含 `RULE.mdc` 和 `references/` |
 | GitHub Copilot | `adapters/github-copilot/.github/` | `.github/`，包含 `copilot-instructions.md`、`instructions/` 和 `instructions/references/` |
 | Trae | `adapters/trae/.trae/` | Trae 项目规则路径，需确认当前版本使用 `.trae/project_rules.md` 还是 `.trae/rules/project_rules.md` |
 
 规则型 adapter 现在也包含 `references/`，但入口文件会明确要求 agent 不要默认加载全部 reference，只在任务需要时读取对应语言模板或汽车工程上下文。对于 `AGENTS.md` 或 `GEMINI.md` 这类固定入口文件，应把提供的 snippet 合并进用户已有文件，而不是覆盖。
+
+npm 安装器会自动用带标记的文本块完成合并。重复运行安装器会更新同一个标记块，不会反复追加重复内容。
 
 ## 如何判断它在起作用
 
