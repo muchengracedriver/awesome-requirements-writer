@@ -54,6 +54,9 @@ for requirement:
 - If multiple interpretations are plausible, state the assumption used.
 - Generate output as a .md file.
 
+## Project-Specific Guidelines
+User can add their customized project-spicific guidelines in this section.
+
 
 ## References
 
