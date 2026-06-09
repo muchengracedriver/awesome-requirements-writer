@@ -69,6 +69,13 @@ This package also provides an optional installer CLI for target-specific adapter
 npx awesome-requirements-writer install codex
 ```
 
+OpenClaw and Hermes both consume `SKILL.md`-style skill folders, so they reuse the same canonical skill package:
+
+```bash
+npx awesome-requirements-writer install openclaw
+npx awesome-requirements-writer install hermes
+```
+
 List supported targets:
 
 ```bash
@@ -108,6 +115,7 @@ adapters/
 ```
 
 `SKILL.md` is the core agent instruction. The files in `references/` are loaded only when the task needs detailed templates or automotive engineering context.
+OpenClaw and Hermes reuse the `SKILL.md` package rather than adding a separate adapter wrapper.
 
 ## Adapters
 
@@ -119,11 +127,13 @@ adapters/
 | Cursor | `adapters/cursor/.cursor/rules/` | `.cursor/rules/`, including `references/` |
 | Gemini CLI | `adapters/gemini/` | Merge into `GEMINI.md`; copy references under `.gemini/awesome-requirements-writer/` |
 | OpenCode | `adapters/opencode/` | Merge `AGENTS.snippet.md` into `AGENTS.md`; copy references under `.opencode/awesome-requirements-writer/` |
+| OpenClaw | `adapters/codex/.agents/skills/awesome-requirements-writer/` | `~/.openclaw/skills/awesome-requirements-writer/` or workspace `skills/awesome-requirements-writer/` |
+| Hermes Agent | `adapters/codex/.agents/skills/awesome-requirements-writer/` | `~/.hermes/skills/awesome-requirements-writer/` |
 | CodeBuddy | `adapters/codebuddy/.codebuddy/rules/awesome-requirements-writer/` | `.codebuddy/rules/awesome-requirements-writer/`, including `RULE.mdc` and `references/` |
 | GitHub Copilot | `adapters/github-copilot/.github/` | `.github/`, including `copilot-instructions.md`, `instructions/`, and `instructions/references/` |
 | Trae | `adapters/trae/.trae/` | Trae project rules path, confirm whether your version uses `.trae/project_rules.md` or `.trae/rules/project_rules.md` |
 
-Rule-style adapters include bundled `references/`, but their entry files explicitly tell the agent not to load every reference by default. The agent should read only the matching language or automotive-context reference when the task needs it. For fixed entry filenames such as `AGENTS.md` or `GEMINI.md`, merge the provided snippet into the user's existing file instead of overwriting it.
+Rule-style adapters include bundled `references/`, but their entry files explicitly tell the agent not to load every reference by default. The agent should read only the matching language or automotive-context reference when the task needs it. OpenClaw and Hermes use the canonical `SKILL.md` package directly instead of a separate wrapper file. OpenClaw/Hermes support means local SKILL.md-compatible installation support; it does not claim ClawHub or Hermes registry publication until those registry flows are tested separately. For fixed entry filenames such as `AGENTS.md` or `GEMINI.md`, merge the provided snippet into the user's existing file instead of overwriting it.
 
 The CLI installer performs this merge automatically by using a marked block. Re-running the installer updates that block instead of appending duplicates.
 

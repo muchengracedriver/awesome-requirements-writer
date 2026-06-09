@@ -71,6 +71,13 @@ npx awesome-requirements-writer install
 npx awesome-requirements-writer install codex
 ```
 
+OpenClaw 和 Hermes 都可以读取 `SKILL.md` 风格的 skill 目录，因此复用同一份 canonical skill 包：
+
+```bash
+npx awesome-requirements-writer install openclaw
+npx awesome-requirements-writer install hermes
+```
+
 查看支持的CLI工具：
 
 ```bash
@@ -110,6 +117,7 @@ adapters/
 ```
 
 `SKILL.md` 是核心 agent 指令。`references/` 里的文件只在任务需要详细模板或汽车工程上下文时读取。
+OpenClaw 和 Hermes 复用 `SKILL.md` 包，不新增单独的 adapter wrapper。
 
 ## 平台适配
 
@@ -121,11 +129,13 @@ adapters/
 | Cursor | `adapters/cursor/.cursor/rules/` | `.cursor/rules/`，包含 `references/` |
 | Gemini CLI | `adapters/gemini/` | 合并到 `GEMINI.md`；把 references 复制到 `.gemini/awesome-requirements-writer/` |
 | OpenCode | `adapters/opencode/` | 将 `AGENTS.snippet.md` 合并到 `AGENTS.md`；把 references 复制到 `.opencode/awesome-requirements-writer/` |
+| OpenClaw | `adapters/codex/.agents/skills/awesome-requirements-writer/` | `~/.openclaw/skills/awesome-requirements-writer/` 或 workspace `skills/awesome-requirements-writer/` |
+| Hermes Agent | `adapters/codex/.agents/skills/awesome-requirements-writer/` | `~/.hermes/skills/awesome-requirements-writer/` |
 | CodeBuddy | `adapters/codebuddy/.codebuddy/rules/awesome-requirements-writer/` | `.codebuddy/rules/awesome-requirements-writer/`，包含 `RULE.mdc` 和 `references/` |
 | GitHub Copilot | `adapters/github-copilot/.github/` | `.github/`，包含 `copilot-instructions.md`、`instructions/` 和 `instructions/references/` |
 | Trae | `adapters/trae/.trae/` | Trae 项目规则路径，需确认当前版本使用 `.trae/project_rules.md` 还是 `.trae/rules/project_rules.md` |
 
-规则型 adapter 现在也包含 `references/`，但入口文件会明确要求 agent 不要默认加载全部 reference，只在任务需要时读取对应语言模板或汽车工程上下文。对于 `AGENTS.md` 或 `GEMINI.md` 这类固定入口文件，应把提供的 snippet 合并进用户已有文件，而不是覆盖。
+规则型 adapter 现在也包含 `references/`，但入口文件会明确要求 agent 不要默认加载全部 reference，只在任务需要时读取对应语言模板或汽车工程上下文。OpenClaw 和 Hermes 直接使用 canonical `SKILL.md` 包，不使用单独 wrapper 文件。这里的 OpenClaw/Hermes 支持表示支持本地 SKILL.md 兼容安装；在单独验证 ClawHub 或 Hermes registry 发布流程之前，不声明已经支持对应 registry 发布。对于 `AGENTS.md` 或 `GEMINI.md` 这类固定入口文件，应把提供的 snippet 合并进用户已有文件，而不是覆盖。
 
 CLI 安装器会自动用带标记的文本块完成合并。重复运行安装器会更新同一个标记块，不会反复追加重复内容。
 
