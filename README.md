@@ -142,4 +142,4 @@ Users can edit `SKILL.md` to adjust the core behavior, and can add company- or t
 
 ## License
 
-MIT
+MIT 
