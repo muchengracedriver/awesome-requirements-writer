@@ -1,5 +1,7 @@
 # Awesome Requirements Writer
 
+本skill支持中文技术需求文档编写，请浏览 简体中文 内容。
+
 As an automotive software engineer with more than ten years of experience, and as a technical manager who has led engineering teams through ASPICE certification, I summarized what I have learned from years of writing and reviewing technical product requirements into this reusable AI agent skill. It helps turn engineering notes, customer inputs, standards, and test expectations into clear, testable technical product requirements.
 
 Some of the ideas behind this skill are discussed in an article I wrote: https://zhuanlan.zhihu.com/p/338598640
