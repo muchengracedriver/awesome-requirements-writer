@@ -59,7 +59,7 @@ node --version
 ```
 
 
-确认node.js已安装后，运行：
+确认node.js已安装后，运行（若需 root 权限，应前缀sudo命令）：
 
 ```bash
 npx awesome-requirements-writer install
