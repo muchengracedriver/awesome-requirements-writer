@@ -71,12 +71,12 @@ npx awesome-requirements-writer install
 npx awesome-requirements-writer install codex
 ```
 
-查看支持的目标：
+查看支持的CLI工具：
 
 ```bash
 npx awesome-requirements-writer list
 ```
-ß
+
 ## 使用
 
 显式调用 skill：
