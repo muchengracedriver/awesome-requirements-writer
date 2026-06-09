@@ -40,7 +40,7 @@
 ## 安装
 
 **方法一（推荐）：**
-直接告诉你的agent：安装awesome-requirements-writer。
+直接告诉你的agent：安装awesome-requirements-writer skill。
 
 **方法二：**
 
