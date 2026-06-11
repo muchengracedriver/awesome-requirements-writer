@@ -29,12 +29,14 @@ A strong requirement is:
 1. Identify the item under requirement: product system, subsystem, feature, variant, and lifecycle phase.
 2. Extract stakeholder intent, system behavior, constraints, interfaces and validation expectations.
 3. Determine if the content is "information" or "requirement". Information is the content which is rationale, examples, diagrams, repeated else-defined requirements, and verification notes outside the normative requirement text.
-4. Classify requirements by type: functional (direct related to a specific feature or design), non-functional (performance, efficiency, expansion etc).
+4. Classify requirements by type: functional vs non-functional. 
 5. Draft atomic "shall" statements with a single subject, condition, behavior, measurable target, operating bounds, and verification path.
 6. Add metadata: type(information/requirement), ID , content body and acceptance criteria.
 7. List all functional requirements and related information in one chapter, while all non-functional requirements in another.
 8. In a new chapter make a table of all static variables and its value. If no value is given, type TBD.
 9. Audit the result for ambiguity, hidden design decisions, unverifiable claims, duplicate requirements, conflicting limits, missing fault behavior, and missing open questions.
+
+**Note:** Functional requirements are direct related to a specific feature or design, while non-functional requirements are related to general performance, system efficiency, software extensibility etc。 They are not direct related to feature level performance definition,more focusing on system level or product level. For example, "The fault flag shall be set within 100 ms after the fault occurs" is a functional requirement, while "The CPU load of the product shall be equal or less than 80%" is a non-functional requirement.
 
 ## Requirement Shape
 
