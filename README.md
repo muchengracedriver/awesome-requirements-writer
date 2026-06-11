@@ -1,4 +1,5 @@
 # Awesome Requirements Writer
+v0.2.0
 
 本skill支持中文技术需求文档编写，请浏览 简体中文(./README-zh.md) 内容。
 
