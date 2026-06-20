@@ -1,6 +1,9 @@
 # Awesome Requirements Writer
 v0.2.0
 
+[![npm version](https://img.shields.io/npm/v/awesome-requirements-writer?label=npm)](https://www.npmjs.com/package/awesome-requirements-writer)
+[![npm downloads](https://img.shields.io/npm/dm/awesome-requirements-writer?label=downloads)](https://www.npmjs.com/package/awesome-requirements-writer)
+
 本skill支持中文技术需求文档编写，请浏览 简体中文(./README-zh.md) 内容。
 
 As an automotive engineer and techinical manager with more than ten years of experience who has led engineering teams through ASPICE certification, I summarized what I have learned from years of writing and reviewing technical product requirements into this reusable AI agent skill. It helps turn engineering notes, customer inputs, standards, and test expectations into clear, testable technical product requirements.

@@ -1,6 +1,10 @@
 # Awesome Requirements Writer
 v0.2.0
 
+[![npm version](https://img.shields.io/npm/v/awesome-requirements-writer?label=npm)](https://www.npmjs.com/package/awesome-requirements-writer)
+[![npm downloads](https://img.shields.io/npm/dm/awesome-requirements-writer?label=downloads)](https://www.npmjs.com/package/awesome-requirements-writer)
+
+
 作为一个具有十多年工作经验的汽车软件工程师和带领工程团队获得ASPICE认证的技术经理，我把多年来参与编写/评审技术产品需求的心得总结出来，写成了这个可复用的 AI agent skill，用于把工程笔记、客户输入、标准条款和测试期望转换为清晰、可测试的技术产品需求。
 
 对于这个skill中提到的一些内容，我曾经写过一篇文章，具体请浏览：https://zhuanlan.zhihu.com/p/338598640
